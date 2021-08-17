@@ -1,0 +1,48 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  labels:
+    app : {{ .Release.Name }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      project: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        project: {{ .Release.Name }} 
+    spec:
+      volumes:
+      - name: db-info
+        secret:
+          secretName: db-secrets
+      containers:
+        - name : {{ .Release.Name }}-web
+          image: {{ .Values.container.image}}
+          resources: {}
+          env: 
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key : db_host
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key : db_user
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key : db_pass
+          - name: DB_NAME
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key : db_name      
+          ports:
+            - containerPort: 8080
+

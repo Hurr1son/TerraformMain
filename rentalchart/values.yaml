@@ -1,0 +1,6 @@
+replicaCount: 2
+
+container:
+  image: eu.gcr.io/terraform-319316/rental-test:init
+
+environment: test
