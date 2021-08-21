@@ -55,6 +55,7 @@ module "cluster" {
   network = module.network.network_name
   subnetwork = module.network.subnetwork_name
   machine_type = var.node_machine_type
+  autoscaling = var.autoscaling
   depends_on = [module.sql, module.network]
 }
 
@@ -79,8 +80,8 @@ module "helm" {
   source = "./modules/helm"
   endpoint = module.cluster.public_endpoint
   cluster_ca_certificate = base64decode(module.cluster.cluster_ca_certificate)
-  helm_name = "${module.cluster.cluster_name}"
-  chart_path = var.chart_path
+  helm_name = "rental"
+  chart_path = "https://hurr1son.github.io/helm/"
 }
 #provider "kubernetes" {
 #  host = "https://${module.cluster.public_endpoint}" 

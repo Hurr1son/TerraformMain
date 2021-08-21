@@ -20,6 +20,12 @@ resource "google_container_node_pool" "test_nodes" {
   location   = var.region
   cluster    = google_container_cluster.test.name
   node_count = 1
+  
+  #for_each ="${var.autoscaling}"
+  autoscaling {
+    min_node_count = var.autoscaling.min_node_count
+    max_node_count = var.autoscaling.max_node_count
+  }
 
   node_config {
     preemptible  = true
@@ -33,8 +39,6 @@ resource "google_container_node_pool" "test_nodes" {
     labels = {
       env = "${terraform.workspace}"
     }
-
-    # preemptible  = true
     machine_type = var.machine_type
     tags         = ["gke-node", "${terraform.workspace}-gke"]
     metadata = {

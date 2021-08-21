@@ -42,12 +42,18 @@ variable "db_user_password" {
 #______________________________________________
 
 
-#Node variables______________________
+#ClusterNode variables______________________
 
 variable "node_machine_type"{
   default = "e2-micro"
 }
-
+variable "autoscaling" {
+  type = map
+  default = {
+    min_node_count = 1
+    max_node_count = 1
+  }
+}
 #____________________________________
 
 

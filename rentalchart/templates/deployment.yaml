@@ -20,7 +20,7 @@ spec:
           secretName: db-secrets
       containers:
         - name : {{ .Release.Name }}-web
-          image: {{ .Values.container.image}}
+          image: "{{ .Values.container.image}}:{{ .Values.container.tag}}"
           resources: {}
           env: 
           - name: DB_HOST

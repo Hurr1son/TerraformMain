@@ -4,7 +4,7 @@ resource "google_sql_database_instance" "sql" {
   name   = var.db_instance_name
 
   #depends_on = [google_service_networking_connection.private_vpc_connection]
-
+  deletion_protection = false
   settings {
     tier = var.db_tier
     ip_configuration {

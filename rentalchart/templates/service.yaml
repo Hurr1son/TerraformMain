@@ -6,7 +6,7 @@ metadata:
     env  : {{ .Values.environment}}
 spec:
   selector:
-    project: {{ .Values.environment}}
+    project: {{ .Release.Name }}
   ports:
     - name      : listener
       protocol  : TCP

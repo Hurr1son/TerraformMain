@@ -12,6 +12,7 @@ provider "helm"{
   }
 }
 resource "helm_release" "rental"{
-  name       =  var.helm_name
-  chart      =  var.chart_path
+  name       =  "rental"
+  repository =  var.chart_path
+  chart = "rental"
 }

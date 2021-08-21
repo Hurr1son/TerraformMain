@@ -19,3 +19,6 @@ variable "subnetwork"{
 variable "machine_type"{
 
 }
+variable "autoscaling" {
+  
+}
