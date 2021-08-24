@@ -2,7 +2,7 @@ variable "project_id" {
   default ="terraform-319316"
 }
 variable "project_name" {
-  default = "rental-service" 
+  default = "rental" 
 }
 variable "region" {
  default = "europe-west3"  
@@ -41,6 +41,16 @@ variable "db_user_password" {
 }
 #______________________________________________
 
+variable "bucket_count" {
+  type = map(string)
+  
+  default = {
+    default = 1
+    prod = 0
+    test = 0
+  }
+  
+}
 
 #ClusterNode variables______________________
 
@@ -71,8 +81,11 @@ variable "tag"{
 variable "kubernetes_secret_name" {
   default = "db-secrets"
 }
-variable "chart_path" {
-  default = "./rentalchart"
+variable "repo_path" {
+  default = "Hurr1son/helm/"
+}
+variable "gh_token" {
+  default = "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"
 }
 #________________________________________________
 
