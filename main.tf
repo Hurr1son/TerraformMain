@@ -60,18 +60,18 @@ module "cluster" {
   cluster_nodepool_name = "${var.project_name}-nodepool-${terraform.workspace}"
   network = module.network.network_name
   subnetwork = module.network.subnetwork_name
-  machine_type = var.node_machine_type
-  autoscaling = var.autoscaling
+  machine_type = var.node_machine_type[local.env]
+  autoscaling = var.autoscaling[local.env]
   depends_on = [module.sql, module.network]
 }
 
-module "init" {
-  source = "./modules/init" 
-  project_id = var.project_id
-  image_name = var.image_name
-  tag = var.tag 
-  depends_on = [google_container_registry.registry]
-}
+#module "init" {
+#  source = "./modules/init" 
+#  project_id = var.project_id
+#  image_name = var.image_name
+#  tag = var.tag 
+#  depends_on = [google_container_registry.registry]
+#}
 module "kubernetes" {
   source = "./modules/kuber" 
   endpoint = module.cluster.public_endpoint

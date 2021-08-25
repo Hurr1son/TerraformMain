@@ -55,13 +55,28 @@ variable "bucket_count" {
 #ClusterNode variables______________________
 
 variable "node_machine_type"{
-  default = "e2-micro"
+  type = map(string) 
+  default = {
+    default = "e2-micro"
+    prod = "f1-micro"
+    test = "e2-micro" 
+  } 
 }
 variable "autoscaling" {
   type = map
   default = {
+    default = {
     min_node_count = 1
     max_node_count = 1
+    }
+    prod = {
+    min_node_count = 1
+    max_node_count = 2
+    }
+    test = {
+    min_node_count = 1
+    max_node_count = 1
+    }
   }
 }
 #____________________________________
@@ -82,10 +97,9 @@ variable "kubernetes_secret_name" {
   default = "db-secrets"
 }
 variable "repo_path" {
-  default = "Hurr1son/helm/"
+  default = "Hurr1son/helm/main/"
 }
 variable "gh_token" {
-  default = "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"
 }
 #________________________________________________
 
