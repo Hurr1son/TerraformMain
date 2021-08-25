@@ -1,1 +1,0 @@
-gh_token = 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
