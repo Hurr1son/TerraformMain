@@ -7,10 +7,10 @@ provider "google" {
   project = var.project_id
 }
 
-resource "google_container_registry" "registry" {
-  project  = var.project_id
-  location = "EU"
-}
+#resource "google_container_registry" "registry" {
+#  project  = var.project_id
+#  location = "EU"
+#}
 
 resource "random_id" "suffix" {
   byte_length = 4
@@ -43,7 +43,7 @@ module "network" {
 module "sql" {
   source = "./modules/sql"
   region = var.region
-  db_instance_name = "${var.project_name}-db-${terraform.workspace}"
+  db_instance_name = "${var.project_name}-db-${random_id.suffix.hex}-${terraform.workspace}"
   db_tier = var.db_tier
   private_network = module.network.network_id
   db_root_password = var.db_root_password

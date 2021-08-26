@@ -9,7 +9,7 @@ variable "region" {
 } 
 
 variable "bucket_name" {
-  default = "rental_bucket_backend"
+  default = "rental_backend"
 }
 #Network_______________________________
 variable "network_global_address_name" {
@@ -34,10 +34,16 @@ variable "db_tier" {
 }
 
 variable "db_root_password" {
+  type = string
+  sensitive   = true
 }
 variable "db_user" {
+  type = string
+  sensitive   = true
 }
 variable "db_user_password" {
+  type = string
+  sensitive   = true
 }
 #______________________________________________
 
@@ -45,7 +51,6 @@ variable "bucket_count" {
   type = map(string)
   
   default = {
-    default = 1
     prod = 0
     test = 0
   }
@@ -58,7 +63,7 @@ variable "node_machine_type"{
   type = map(string) 
   default = {
     default = "e2-micro"
-    prod = "f1-micro"
+    prod = "e2-micro"
     test = "e2-micro" 
   } 
 }
@@ -71,7 +76,7 @@ variable "autoscaling" {
     }
     prod = {
     min_node_count = 1
-    max_node_count = 2
+    max_node_count = 1
     }
     test = {
     min_node_count = 1
@@ -100,6 +105,7 @@ variable "repo_path" {
   default = "Hurr1son/helm/main/"
 }
 variable "gh_token" {
+  type = string
+  sensitive   = true
 }
 #________________________________________________
-
