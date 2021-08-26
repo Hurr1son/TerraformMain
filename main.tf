@@ -7,11 +7,6 @@ provider "google" {
   project = var.project_id
 }
 
-#resource "google_container_registry" "registry" {
-#  project  = var.project_id
-#  location = "EU"
-#}
-
 resource "random_id" "suffix" {
   byte_length = 4
 }
@@ -23,13 +18,6 @@ module "bucket" {
   region = var.region
   bucket_name = "${var.bucket_name}-${terraform.workspace}"
 }
-
-#terraform{
-#    backend "gcs"{
-#    bucket = "rental_bucket_backend-test"
-#    prefix = "/rental/"
-#    }
-#}
 
 module "network" {
   source = "./modules/network/"
@@ -65,13 +53,14 @@ module "cluster" {
   depends_on = [module.sql, module.network]
 }
 
-#module "init" {
-#  source = "./modules/init" 
-#  project_id = var.project_id
-#  image_name = var.image_name
-#  tag = var.tag 
-#  depends_on = [google_container_registry.registry]
-#}
+module "init" {
+  source = "./modules/init" 
+  project_id = var.project_id
+  image_name = var.image_name
+  tag = var.tag 
+  depends_on = [google_container_registry.registry]
+}
+
 module "kubernetes" {
   source = "./modules/kuber" 
   endpoint = module.cluster.public_endpoint
