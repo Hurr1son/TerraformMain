@@ -11,6 +11,11 @@ resource "random_id" "suffix" {
   byte_length = 4
 }
 
+resource "google_container_registry" "registry" {
+  project  = var.project_id
+  location = "EU"
+}
+
 module "bucket" {
   count = var.bucket_count[local.env]
   source = "./modules/bucket"
@@ -58,7 +63,9 @@ module "init" {
   project_id = var.project_id
   image_name = var.image_name
   tag = var.tag 
-  depends_on = [google_container_registry.registry]
+  depends_on = [
+    google_container_registry.registry
+  ]
 }
 
 module "kubernetes" {
