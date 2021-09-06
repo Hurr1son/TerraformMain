@@ -68,22 +68,39 @@ module "init" {
   ]
 }
 
+data "google_client_config" "client" {}
+
+data "template_file" "access_token" {
+  template = data.google_client_config.client.access_token
+}
+
+provider "kubernetes" {
+  host = "https://${module.cluster.public_endpoint}" 
+    token                  = data.google_client_config.client.access_token
+    cluster_ca_certificate = base64decode(module.cluster.cluster_ca_certificate)
+}
+
 module "kubernetes" {
   source = "./modules/kuber" 
-  endpoint = module.cluster.public_endpoint
-  cluster_ca_certificate = base64decode(module.cluster.cluster_ca_certificate)
   secret_name = var.kubernetes_secret_name
   db_host = module.sql.db_private_ip_address
   db_user = var.db_user
   db_user_password = var.db_user_password
   db_name = var.db_name
+  depends_on = [module.cluster]
+}
+provider "helm"{
+  kubernetes{
+    host = "https://${module.cluster.public_endpoint}" 
+    token                  = data.template_file.access_token.rendered
+    cluster_ca_certificate = base64decode(module.cluster.cluster_ca_certificate)
+  }
 }
 module "helm" {
   source = "./modules/helm"
-  endpoint = module.cluster.public_endpoint
-  cluster_ca_certificate = base64decode(module.cluster.cluster_ca_certificate)
   helm_name = var.project_name
   chart_path = "https://${var.gh_token}@raw.githubusercontent.com/${var.repo_path}"
+  depends_on = [module.kubernetes]
 }
 #provider "kubernetes" {
 #  host = "https://${module.cluster.public_endpoint}" 

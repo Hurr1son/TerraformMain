@@ -1,8 +1,3 @@
-variable "endpoint" {
-}
-variable "cluster_ca_certificate" {
-  
-}
 variable "helm_name" {
   
 }
