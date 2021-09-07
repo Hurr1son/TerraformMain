@@ -52,7 +52,7 @@ variable "bucket_count" {
   
   default = {
     prod = 0
-    test = 0
+    dev = 0
   }
   
 }
@@ -62,23 +62,18 @@ variable "bucket_count" {
 variable "node_machine_type"{
   type = map(string) 
   default = {
-    default = "e2-micro"
     prod = "e2-micro"
-    test = "e2-micro" 
+    dev = "e2-micro" 
   } 
 }
 variable "autoscaling" {
   type = map
   default = {
-    default = {
-    min_node_count = 1
-    max_node_count = 1
-    }
     prod = {
     min_node_count = 1
     max_node_count = 1
     }
-    test = {
+    dev = {
     min_node_count = 1
     max_node_count = 1
     }
