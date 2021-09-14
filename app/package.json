@@ -1,0 +1,32 @@
+{
+  "name": "tool_rental",
+  "version": "1.0.0",
+  "description": "test tool rental site with node.js, angularjs, mysql",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "5.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michikoinaba/tool_rental.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michikoinaba/tool_rental/issues"
+  },
+  "homepage": "https://github.com/michikoinaba/tool_rental#readme"
+}

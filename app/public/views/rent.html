@@ -1,0 +1,34 @@
+<div  ng-controller="RentCtrl">
+	 <div class="main-low-margin col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 margin-top-100 ">
+	 <h3>TOOL RENTAL</h3><br>
+		  <div class="alert alert-danger" ng-show="showErrorAlert">{{errormsg}}</div>
+		 <table class="table table-striped">
+			  <tr><td>
+			 <div ng-repeat="tool in tools">
+			<input type="hidden" ng-model="tool.id" >
+			 <label ng-model="tool.type"> {{tool.type}} </label>
+			 
+			 <p ng-model="tool.name">
+			  {{tool.name}}
+			  
+			  </p>
+			
+			<p ng-model="tool.description">
+				{{tool.description}}
+				
+			</p>	
+			
+			<p ng-model="tool.price">
+			<font color="#660033">${{tool.price}} per week</font>
+			
+			</p>
+			
+				<button ng-click="select(tool.id)" class=" btn btn-success" id={{tool.id}}>SELECT</button>
+			
+			 <hr>
+			 </div>
+			  </td></tr>
+		</table>	 
+			 
+	 </div>
+</div>

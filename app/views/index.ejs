@@ -1,0 +1,88 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Node Authentication</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<link href="css/style.css" rel="stylesheet" />
+	<style>
+		body 		{ padding-top:80px; }
+	</style>
+	
+	<!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
+	 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+      <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+       <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.1.3.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+	
+</head>
+
+     <!-- NAV SECTION -->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">LeaseDimensions</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a  ng-show="username==null" href="#/login">LOGIN</a></li> <!--show LOGIN link only if a user is not logged in.  -->
+                    <li><a href="#/signup">SIGNUP</a></li>
+                    <li><a href="#/home">HOME</a></li>
+                    <li><a href="#about-section">ABOUT</a></li>
+                    <li><a href="#contact-section">CONTACT</a></li>
+                    <li><a href="#contact-section">Call:&nbsp;+23-689-90  </a></li>
+                    <li><a href="/logout">LOGOUT</a></li>
+                   <li> <a href="" ng-show="username!=null" ><font color="white"><b>{{username}} logged in</b></font></a></li>
+                </ul>
+              
+            </div>
+             
+        </div>
+    </div>
+     <!--END NAV SECTION -->
+     <!-- HEADER SECTION -->
+    <div id="header-section" >
+       
+       <!-- each page view comes here -->
+       <div class="container"> 
+                   
+			   {{message}}
+			   <ng-view></ng-view>
+          
+     </div>
+       
+    </div> 
+      <!--END HEADER SECTION -->
+
+ <div class="space-top"></div>
+   <!--FOOTER SECTION -->
+    
+      <div class="navbar navbar-fixed-bottom"  id="footer" >
+               
+                   
+          <br />
+        <div class="text-center"> 2014 www.yourdomain.com | All Right Reserved </div>
+         
+            </div>
+         
+    <!--END FOOTER SECTION --> 
+ 
+    
+    </body>
+
+	
+</html>

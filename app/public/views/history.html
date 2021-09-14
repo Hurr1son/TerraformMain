@@ -1,0 +1,40 @@
+
+<div  ng-controller="HistoryCtrl" >
+
+
+	<div class="row">
+	 	<div  class="col-lg-12 col-md-offset-2"><h3>RENTAL HISTORY</h3>
+	 	<p>{{message}}</p>
+	 	</div>
+	</div>
+	 	
+ 	
+		<div class="container" style="margin-top:40px">
+				
+				
+			   <div class="row">
+			  
+				   	<div ng-repeat="item in tools">
+				   
+					   	<table class = "table table-bordered">
+					   	
+					   	<tr>
+					   	<td style="width: 15%; background-color: #f5f5f5;" >Rented Date</td><td>{{item.rented_date}}</td>
+					   	</tr>
+					   	<tr>
+					   	<td class="" style="width: 15%; background-color: #f5f5f5;">Tool Type</td><td>{{item.type}}</td>
+					   	</tr>
+					   	<tr>
+					   	<td class="" style="width: 15%; background-color: #f5f5f5;">Tool Name</td><td>{{item.name}}</td>
+					   	</tr>
+					   	<tr>
+					   	<td class="" style="width: 15%; background-color: #f5f5f5;">Price</td><td>${{item.price}}/week</td>
+					   	</tr>
+					   	
+					   	</table>
+				 
+					</div>
+
+			</div>
+	</div>
+</div>
