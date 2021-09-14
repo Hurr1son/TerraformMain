@@ -1,81 +1,84 @@
 variable "project_id" {
-  default ="terraform-319316"
+  default   = "terr-325411"
 }
 variable "project_name" {
-  default = "rental" 
+  default   = "rental"
 }
 variable "region" {
- default = "europe-west3"  
-} 
+  default   = "europe-west3"
+}
+variable "zone" {
+  default   = "europe-west3-a"
+}
 
 variable "bucket_name" {
-  default = "rental_backend"
+  default   = "rental_backend"
 }
 #Network_______________________________
 variable "network_global_address_name" {
-  default = "private-ip-address"
+  default   = "private-ip-address"
 }
 #______________________________________
 
 #DB variables___________________________
 variable "db_name" {
-  type        = string
-  default     = "rentaldb"
+  type      = string
+  default   = "rentaldb"
 }
 
 variable "db_region" {
-  type        = string
-  default     = "europe-west3"
+  type      = string
+  default   = "europe-west3"
 }
 
 variable "db_tier" {
-  type        = string
-  default     = "db-f1-micro"
+  type      = string
+  default   = "db-f1-micro"
 }
 
 variable "db_root_password" {
-  type = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 variable "db_user" {
-  type = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 variable "db_user_password" {
-  type = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 #______________________________________________
 
 variable "bucket_count" {
-  type = map(string)
-  
-  default = {
-    prod = 0
-    dev = 0
+  type      = map(string)
+
+  default   = {
+    prod    = 0
+    dev     = 0
   }
-  
+
 }
 
 #ClusterNode variables______________________
 
-variable "node_machine_type"{
-  type = map(string) 
-  default = {
-    prod = "e2-micro"
-    dev = "e2-micro" 
-  } 
+variable "node_machine_type" {
+  type      = map(string)
+  default   = {
+    prod    = "e2-micro"
+    dev     = "e2-micro"
+  }
 }
 variable "autoscaling" {
-  type = map
-  default = {
-    prod = {
-    min_node_count = 1
-    max_node_count = 1
+  type      = map(any)
+  default   = {
+    prod    = {
+      min_node_count = 1
+      max_node_count = 1
     }
     dev = {
-    min_node_count = 1
-    max_node_count = 1
+      min_node_count = 1
+      max_node_count = 1
     }
   }
 }
@@ -83,24 +86,24 @@ variable "autoscaling" {
 
 
 #Init module____________________________________
-variable "image_name"{
-  default = "rental"
+variable "image_name" {
+  default   = "rental"
 }
-variable "tag"{
-  default = "init"
+variable "tag" {
+  default   = "init"
 }
 #________________________________________________
 
 
 #kubernetes_____________________________
 variable "kubernetes_secret_name" {
-  default = "db-secrets"
+  default   = "db-secrets"
 }
 variable "repo_path" {
-  default = "Hurr1son/helm/main/"
+  default   = "Hurr1son/helm/main/"
 }
 variable "gh_token" {
-  type = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 #________________________________________________

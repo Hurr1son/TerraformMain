@@ -1,9 +1,10 @@
 resource "helm_release" "rental"{
   name       =  "rental"
   repository =  var.chart_path
-  chart = "rental"
+  chart      = "rental"
+  verify     = false
   set {
-    name = "container.env"
-    value = "${terraform.workspace}"
+    name     = "env"
+    value    = "${terraform.workspace}"
   }
 }

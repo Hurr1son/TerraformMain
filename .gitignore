@@ -5,4 +5,3 @@ terraform.tfstate.backup
 terraform.tfstate.d/
 secrets.tfvars
 *.tfvars
-./app/
