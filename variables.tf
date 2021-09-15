@@ -11,9 +11,6 @@ variable "zone" {
   default   = "europe-west3-a"
 }
 
-variable "bucket_name" {
-  default   = "rental_backend"
-}
 #Network_______________________________
 variable "network_global_address_name" {
   default   = "private-ip-address"
@@ -55,7 +52,7 @@ variable "bucket_count" {
 
   default   = {
     prod    = 0
-    dev     = 0
+    dev     = 1
   }
 
 }
@@ -65,8 +62,8 @@ variable "bucket_count" {
 variable "node_machine_type" {
   type      = map(string)
   default   = {
-    prod    = "e2-micro"
-    dev     = "e2-micro"
+    prod    = "e2-medium"
+    dev     = "e2-small"
   }
 }
 variable "autoscaling" {
@@ -74,7 +71,7 @@ variable "autoscaling" {
   default   = {
     prod    = {
       min_node_count = 1
-      max_node_count = 1
+      max_node_count = 2
     }
     dev = {
       min_node_count = 1

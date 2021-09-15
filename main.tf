@@ -16,14 +16,6 @@ resource "google_container_registry" "registry" {
   location = "EU"
 }
 
-module "bucket" {
-  count       = var.bucket_count[local.env]
-  source      = "./modules/bucket"
-  project_id  = var.project_id
-  region      = var.region
-  bucket_name = "${var.bucket_name}-${terraform.workspace}"
-}
-
 module "network" {
   source          = "./modules/network/"
   region          = var.region
@@ -58,15 +50,15 @@ module "cluster" {
   depends_on            = [module.sql, module.network]
 }
 
-# # module "init" {
-#   source     = "./modules/init"
-#   project_id = var.project_id
-#   image_name = var.image_name
-#   tag        = var.tag
-#   depends_on = [
-#     google_container_registry.registry
-#   ]
-# }
+module "init" {
+  source     = "./modules/init"
+  project_id = var.project_id
+  image_name = var.image_name
+  tag        = var.tag
+  depends_on = [
+    google_container_registry.registry
+  ]
+}
 
 data "google_client_config" "client" {}
 

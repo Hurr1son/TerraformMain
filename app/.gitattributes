@@ -1,0 +1,2 @@
+./.circleci merge=ours
+./.circleci/config.yml merge=ours
